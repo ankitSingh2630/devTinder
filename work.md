@@ -1,0 +1,10 @@
+- Create a repository 
+- Initialize the repository
+- What is node_module,package.json,package-lock.json
+- Install express
+- create a server
+- Listen on port 3000
+- Write request hanlder for /test and /hello
+- Install the nodemon and update the script in package.json file 
+- what are ddependencies
+- differnce between tidle(~) vs (^) caret
