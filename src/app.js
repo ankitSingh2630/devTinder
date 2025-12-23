@@ -1,37 +1,29 @@
 const express = require("express");
 
 const app = express();
+const {adminAuth , userAuth}= require("./middlewares/auth")
 
+app.use("/admin",adminAuth);
 
+app.get("/user/login",(req,res)=>{
+    res.send("user login successful")
+})
 
+app.get("/user/data",userAuth,(req,res)=>{
+    res.send("user data sent")
+})
 
-app.use("/user",[(req,res,next)=>{
-    console.log("Request Handler for User")
-    // res.send("Response")
-    next()
-    // res.send("Response")
-},
-(req,res,next)=>{
-    console.log("Request Handler for User 2")
-    // res.send("Response2")
-    next()
-},
-(req,res,next)=>{
-    console.log("Request Handler for User 3")
-    // res.send("Response 3")
-    next()
-}],
-[(req,res,next)=>{
-    console.log("Request Handler for User 4")
-    // res.send("Response 4")
-    next()
-},
-(req,res,next)=>{
-    console.log("Request Handler for User 5")
-    res.send("Response 5")
-    next()
-}]
-);
+app.get("/admin/getAllUser",(req,res)=>{
+    // getting authaurised by token
+    
+        res.send("Data successfully sent")
+
+})
+
+app.get("/admin/deleteUser",(req,res)=>{
+    // getting authaurised by token
+    res.send("Deleted a user");
+})
 
 
 
