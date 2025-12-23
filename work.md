@@ -35,3 +35,9 @@
 - Install postman app and make the workspace/collection and then Test api call
 - Write logic for handling  http routes GET, POST, DELETE , PATCH , PUT  
 - EXPORE REGEX IN routing
+- Learn about dynamic routing
+
+- Multiple route handlers- Play with code
+- next()
+- next() function and  error  along with res.send()
+- app.use("route", rH,rH2,[rH3,rH4,rH5])

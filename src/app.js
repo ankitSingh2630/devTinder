@@ -4,19 +4,36 @@ const app = express();
 
 
 
-app.get("/abcd",(req,res)=>{
-    console.log(req.query)
-    res.send({firstName:"Ankit ",lastName:"Singh"})
-})
 
-app.post("/user",(req,res)=>{
-    console.log("Saving data to the DB")
-    res.send("Data successfully saved to the DB")
-})
+app.use("/user",[(req,res,next)=>{
+    console.log("Request Handler for User")
+    // res.send("Response")
+    next()
+    // res.send("Response")
+},
+(req,res,next)=>{
+    console.log("Request Handler for User 2")
+    // res.send("Response2")
+    next()
+},
+(req,res,next)=>{
+    console.log("Request Handler for User 3")
+    // res.send("Response 3")
+    next()
+}],
+[(req,res,next)=>{
+    console.log("Request Handler for User 4")
+    // res.send("Response 4")
+    next()
+},
+(req,res,next)=>{
+    console.log("Request Handler for User 5")
+    res.send("Response 5")
+    next()
+}]
+);
 
-app.delete("/user", (req,res)=>{
-    res.send(" Deleted Successfully !")
-})
+
 
 app.listen(3000,()=>{
     console.log("app is running on 3000 ...")
