@@ -1,32 +1,36 @@
 const express = require("express");
+const connectDB = require("./config/database")
+const User = require("./models/user")
 
 const app = express();
-const {adminAuth , userAuth}= require("./middlewares/auth")
 
-app.use("/admin",adminAuth);
-
-app.get("/user/login",(req,res)=>{
-    res.send("user login successful")
-})
-
-app.get("/user/data",userAuth,(req,res)=>{
-    res.send("user data sent")
-})
-
-app.get("/admin/getAllUser",(req,res)=>{
-    // getting authaurised by token
+app.post("/signup", async (req,res)=>{
     
-        res.send("Data successfully sent")
+
+    const user = new User({
+        firstName:"Rohit",
+        lastName:"Sharma",
+        emailId:"rohit@gmail.com",
+        password:"ankit@123"
+    });
+
+    try {    
+    await user.save();
+    res.send("User created successfully")
+    } catch (error) {
+        res.status(400).send("Error saving the user ", error.message)
+        
+    }
+
 
 })
 
-app.get("/admin/deleteUser",(req,res)=>{
-    // getting authaurised by token
-    res.send("Deleted a user");
-})
-
-
-
-app.listen(3000,()=>{
+connectDB().then(()=>{
+    console.log("Connection successfully established");
+    app.listen(3000,()=>{
     console.log("app is running on 3000 ...")
 });
+}).catch((err)=>{
+    console.err("Connection is not established successfully");
+})
+
