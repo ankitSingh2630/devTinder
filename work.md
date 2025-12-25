@@ -57,3 +57,5 @@
 - Create userSchema and userModel
 - Create /signup api to add data to database 
 - push some documents using API calls from postman 
+
+- Difference between JSObject and JSON
