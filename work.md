@@ -59,3 +59,6 @@
 - push some documents using API calls from postman 
 
 - Difference between JSObject and JSON
+
+-  API - Get user by email 
+- API Feed API - GET /feed - get all the users from the database.

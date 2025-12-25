@@ -14,11 +14,42 @@ app.post("/signup", async (req,res)=>{
     await user.save();
     res.send("User created successfully")
     } catch (error) {
-        res.status(400).send("Error saving the user ", error.message)
-        
+        res.status(400).send("Error saving the user ", error.message)    
     }
+})
 
+//  API - Get user by email 
 
+app.get("/user",async(req,res)=>{
+
+    const userEmail = req.body.emailId;
+    try{
+        const user = await User.find({emailId: userEmail});
+        if(!user){
+        res.status(404).send("User not found");
+      }
+        res.send(user)
+    }
+    catch(err){
+        res.status(400).send("Something went wrong");
+    }
+})
+
+// API Feed API - GET /feed - get all the users from the database.
+
+app.get("/feed", async(req,res)=>{
+
+    try {
+        const users = await User.find();
+        if(!users){
+        res.status(404).send("User not found");          
+    }
+        res.send(users); 
+
+    } catch (error) {
+        res.status(400).send("Something went wrong");
+
+    }
 })
 
 connectDB().then(()=>{
