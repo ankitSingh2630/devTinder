@@ -62,3 +62,10 @@
 
 -  API - Get user by email 
 - API Feed API - GET /feed - get all the users from the database.
+
+- Explore Schema types options from the document
+- add required ,unique ,lowercase , min , minlength , default
+- Improve the db schema - Put all appropriate validation all the fields in schema
+- Add timestamps  to the UserSchema
+- Add API level validation on patch and signup API
+- DATA SANITIZATION- Add API level validation on each fields

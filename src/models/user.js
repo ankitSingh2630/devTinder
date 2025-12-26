@@ -48,7 +48,12 @@ const mongoose = require('mongoose');
         default:" This is a default about of the user"
     },
     skills:{
-        type:[String]
+        type:[String],
+        validate:{
+            validator: (arr)=> arr.length <=10,
+            message:"Maximum 10 skills allowed"
+        }
+
     }
 
  },{timestamps:true});
