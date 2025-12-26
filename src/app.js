@@ -14,7 +14,7 @@ app.post("/signup", async (req,res)=>{
     await user.save();
     res.send("User created successfully")
     } catch (error) {
-        res.status(400).send("Error saving the user ", error.message)    
+        res.status(400).send("Error saving the user "+ error.message)    
     }
 })
 
@@ -31,7 +31,7 @@ app.get("/user",async(req,res)=>{
         res.send(user)
     }
     catch(err){
-        res.status(400).send("Something went wrong");
+        res.status(400).send(err);
     }
 })
 
@@ -46,10 +46,52 @@ app.get("/feed", async(req,res)=>{
     }
         res.send(users); 
 
-    } catch (error) {
+    }catch (error) {
+        res.status(400).send("Something went wrong");
+
+    } 
+});
+
+app.delete("/user", async(req,res)=>{
+
+    const userId= req.body.userId;
+    try{
+      const user = await User.findByIdAndDelete({_id:userId})
+      if(!user){
+        res.status(404).send("User not found");          
+
+      }
+      res.send(user)
+
+    }catch (error) {
         res.status(400).send("Something went wrong");
 
     }
+
+})
+
+app.patch("/user", async(req,res)=>{
+    const userId= req.body.userId;
+    const data = req.body;
+
+  try{
+    const user = await User.findByIdAndUpdate(
+        userId,
+        data,
+        {
+            new:true,
+            runValidators:true,
+        }
+    );
+    res.send({
+        data:user,
+        message:"User Updated Successfully"
+    });
+  }catch (error) {
+        res.status(400).send(error)
+
+    }
+
 })
 
 connectDB().then(()=>{
