@@ -69,3 +69,4 @@
 - Add timestamps  to the UserSchema
 - Add API level validation on patch and signup API
 - DATA SANITIZATION- Add API level validation on each fields
+- Explore npm validator and add db level vaidation on email,password and url using validator fn

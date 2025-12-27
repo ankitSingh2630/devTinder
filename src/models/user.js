@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
  const userSchema = new mongoose.Schema({
     firstName:{
@@ -13,19 +14,29 @@ const mongoose = require('mongoose');
         type:String,
         minlength:3,
         maxlength:20,
-        trim:true 
+        trim:TransformStreamDefaultController
     },
     emailId:{
         type:String,
         required:true,
         unique:true,
-        trim:true
+        trim:true,
+        validate(value){
+            if(!validator.isEmail(value)){
+                throw new Error(" Invalid email address: "+value)
+            }
+        }
     },
     password:{
         type:String,
         required:true,
         minlength:5,
-        maxlength:15
+        maxlength:15,
+        validate(value){
+            if(!validator.isStrongPassword(value)){
+                throw new Error("Enter a strong password ")
+            }
+        }
     },
     age:{
         type:Number,
@@ -41,7 +52,12 @@ const mongoose = require('mongoose');
     },
     photoUrl:{
         type:String,
-        default:"https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"
+        default:"https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+        validate(value){
+            if(!validator.isURL(value)){
+                throw new Error ("Invalid photo url: "+value)
+            }
+        }
     },
     about:{
         type:String,

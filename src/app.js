@@ -76,9 +76,9 @@ app.patch("/user/:userId", async(req,res)=>{
 
   try{
     const ALLOWED_UPDATES= ["photoUrl","about","skills","age","gender"];
-    const isAllowedUpdates= Object.keys(data).every((k)=>{
-        return  ALLOWED_UPDATES.includes(k)
-    })
+    const isAllowedUpdates= Object.keys(data).every((k)=>
+          ALLOWED_UPDATES.includes(k)
+    )
     if(!isAllowedUpdates){
         throw new Error("Update not allowed");
     }
