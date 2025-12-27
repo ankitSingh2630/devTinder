@@ -31,7 +31,6 @@ const validator = require('validator');
         type:String,
         required:true,
         minlength:5,
-        maxlength:15,
         validate(value){
             if(!validator.isStrongPassword(value)){
                 throw new Error("Enter a strong password ")

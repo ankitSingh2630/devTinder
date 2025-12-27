@@ -69,4 +69,11 @@
 - Add timestamps  to the UserSchema
 - Add API level validation on patch and signup API
 - DATA SANITIZATION- Add API level validation on each fields
-- Explore npm validator and add db level vaidation on email,password and url using validator fn
+- Explore npm validator library and add use validator function for  email,password and url using validator fn
+- Never trust req.body
+
+- Validate data in signup API
+- Install bcrypt package
+- Create hash password using bcrypt and saved the user in encrypted password
+- Create login API
+- Compare password and throw errors if email and password is invalid
