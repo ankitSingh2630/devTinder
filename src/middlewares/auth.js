@@ -1,23 +1,27 @@
- const adminAuth = (req,res,next)=>{
-    const token ="xyz";
-    const isAuthorized = "xyz" === token ;
+const jwt= require('jsonwebtoken');
+const User= require('../models/user');
 
-    if(!isAuthorized){
-        res.status(401).send("Unauthorised");
+const userAuth = async(req,res,next)=>{
+ try{   const cookies =req.cookies;
+    const {token}=cookies;
+
+    if(!token){
+        throw new Error("token is not valid");
     }
-    console.log("checking middleware")
-    next();
-}
 
-const userAuth = (req,res,next)=>{
-    const token ="xyz";
-    const isAuthorized = "xyz" === token ;
+    const decoded=jwt.verify(token,"ankit@1234@abc");
 
-    if(!isAuthorized){
-        res.status(401).send("Unauthorised");
+    const {_id}=decoded;
+
+    const user= await User.findById(_id);
+
+    if(!user){
+        throw new Error("User not found");
     }
-    console.log("checking middleware")
-    next();
+    req.user=user;
+    next();}
+    catch(err){
+        res.status(404).send("ERROR: "+err.message);
+    }
 }
-
-module.exports ={adminAuth , userAuth}
+module.exports = userAuth;
