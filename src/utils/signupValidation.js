@@ -8,10 +8,7 @@ const validateSignupData=(req)=>{
     }
     else if (!validator.isEmail(emailId)) {
          throw new Error("Email address is incorrect");
-    } else if (!validator.isStrongPassword(password)) {
-        throw new Error("Enter a Strong password")
-        
-    } 
+    }
 }
 
 const validateEditProfile=(req)=>{

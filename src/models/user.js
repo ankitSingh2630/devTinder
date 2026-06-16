@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
-const jwt=require('jsonwebtoken');
+var validator = require('validator');// const jwt=require('jsonwebtoken');
 const bcrypt=require('bcrypt');
+const jwt=require('jsonwebtoken');
+
 
  const userSchema = new mongoose.Schema({
     firstName:{
@@ -16,7 +17,7 @@ const bcrypt=require('bcrypt');
         type:String,
         minlength:3,
         maxlength:20,
-        trim:TransformStreamDefaultController
+        trim:true,
     },
     emailId:{
         type:String,
@@ -75,7 +76,7 @@ const bcrypt=require('bcrypt');
 
  },{timestamps:true});
 
-//  create token
+// //  create token
  userSchema.methods.getJWT= async function(){
     const user=this;
 
@@ -85,7 +86,7 @@ const bcrypt=require('bcrypt');
     return token;    
  }
 
-//  validate password
+// //  validate password
 
 userSchema.methods.validatePassword = async function(passwordGetByUser){
     const user=this;

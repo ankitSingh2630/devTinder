@@ -95,5 +95,24 @@
 - Explore Tinder APIs
 - Create a list all api that you can think of in Dev Tinder
 - Group all api respective router
+- Read the documentation of express.router
+- create route folder for managing auth,profile,request
+- create authRouter,prfileFRouter,requestRouter
+- import these router in app.js
+- create POST /logout API
+- create PATCH /profile/edit
+- create PATCH /profile/password
+- Make you validate all data in every POST,PATCH apis
+
+- Create connection request schema
+- send connection request api
+-  Proper validation of data
+- handle all corner cases
+- learn $or and $and opertor in mongoDB
+- schema.pre("save") function
+
+- Read more about indexes in MongoDB
+- Why do we need indexes
+
 
 
