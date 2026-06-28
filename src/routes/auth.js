@@ -63,8 +63,25 @@ authRouter.post("/login",async(req,res)=>{
     })
     res.send("Login successfully user")    
     } catch (err) {
-        res.status(400).send("ERROR: "+ err.message)    
+        res.status(400).json({
+            message:err.message
+        })
 
+    }
+})
+
+authRouter.get("/logout",async(req,res)=>{
+    try{
+        res.cookie("token",null,{
+            expires:new Date(Date.now()+0)
+        })
+
+        res.send("Logout successfully");
+
+    }catch(err){
+         res.status(400).json({
+            message:err.message
+        })
     }
 })
 
